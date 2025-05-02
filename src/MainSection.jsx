@@ -1,6 +1,7 @@
-export default function MainSection() {
-  const ingredients = ["Chicken", "Oregano", "Tomatoes"];
+import React from "react";
 
+export default function MainSection() {
+  const [ingredients, setIngredient] = React.useState([]);
   const ingredientsListItems = ingredients.map((ingredient) => (
     <li key={ingredient}>{ingredient}</li>
   ));
@@ -9,8 +10,7 @@ export default function MainSection() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const newIngredient = formData.get("ingredient");
-    ingredients.push(newIngredient);
-    console.log(ingredients);
+    setIngredient((prevIngredient) => [...prevIngredient, newIngredient]);
   }
   return (
     <main>
