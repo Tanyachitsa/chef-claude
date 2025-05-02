@@ -1,7 +1,15 @@
 import React from "react";
+import IngredientsList from "./components/IngredientsList";
 
 export default function MainSection() {
   const [ingredients, setIngredients] = React.useState([]);
+
+  const [recipeShown, setRecipeShown] = React.useState(false);
+
+  function toggleRecipeShown() {
+    setRecipeShown((prevShown) => !prevShown);
+  }
+
   const ingredientsListItems = ingredients.map((ingredient) => (
     <li key={ingredient}>{ingredient}</li>
   ));
@@ -21,22 +29,14 @@ export default function MainSection() {
         />
         <button>Add ingredient</button>
       </form>
-
       {ingredients.length > 0 && (
-        <section>
-          <h2>Ingredients on hand:</h2>
-          <ul className="ingredients-list" aria-live="polite">
-            {ingredientsListItems}
-          </ul>
-          <div className="get-recipe-container">
-            <div>
-              <h3>Ready for a recipe?</h3>
-              <p>Generate a recipe from your list of ingredients.</p>
-            </div>
-            <button>Get a recipe</button>
-          </div>
-        </section>
+        <IngredientsList
+          ingredients={ingredients}
+          toggleRecipeShown={toggleRecipeShown}
+        />
       )}
+
+      {recipeShown && <h1>Recipe shown here</h1>}
     </main>
   );
 }
