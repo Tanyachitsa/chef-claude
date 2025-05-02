@@ -17,6 +17,10 @@ main {
   font-size: 30px;
   font-weight: 350;
 }
+.header-icon {
+  font-size: 40px;
+  margin-right: 10px;
+}
 .add-ingredient-form {
   display: flex;
   justify-content: center;
